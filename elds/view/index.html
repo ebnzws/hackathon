@@ -93,8 +93,7 @@
                     <label id="q2-label" class="block text-lg font-medium text-orange-300"></label>
                     <textarea rows="3" class="w-full bg-slate-700 border border-slate-600 rounded-xl p-4 text-white focus:ring-2 focus:ring-orange-500 focus:outline-none placeholder-slate-500" placeholder="e.g., Strategic decision making and personalized high-value client consulting..."></textarea>
                 </div>
-
-                <button type="button" onclick="alert('Strategy Saved!')" class="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 rounded-xl transition-colors">
+                <button type="button" onclick="openDashboard()" class="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 rounded-xl transition-colors">
                     Generate Final AI Transformation Roadmap
                 </button>
             </form>
@@ -103,8 +102,9 @@
 </div>
 
 <script>
+    let analysisData = null;
+
     async function startAnalysis() {
-        // UI Logic: Hide setup, show progress
         document.getElementById('setup-area').classList.add('hidden');
         document.getElementById('progress-area').classList.remove('hidden');
 
@@ -112,50 +112,50 @@
         const statusText = document.getElementById('status-text');
 
         try {
-            // --- REAL API CALL ---
-            // Step 1: Trigger Backend Read
-            statusText.innerText = "Accessing /Company/ folder...";
-            progressBar.style.width = "33%";
+            statusText.innerText = 'Accessing /Company/ folder...';
+            progressBar.style.width = '33%';
 
+            // Use exactly this URL -- not a Markdown link.
             const response = await fetch('http://localhost:3000/api/analyze');
-            if (!response.ok) throw new Error("Backend connection failed");
-
+            if (!response.ok) throw new Error('Backend connection failed');
             const realData = await response.json();
 
-            // Step 2: Artificial delay so user sees the progress
-            await new Promise(r => setTimeout(r, 1000));
-            statusText.innerText = "Analyzing MD Content...";
-            progressBar.style.width = "66%";
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            statusText.innerText = 'Analyzing MD Content...';
+            progressBar.style.width = '66%';
             document.getElementById('step-2').classList.add('text-blue-600', 'font-semibold');
 
-            // Step 3: Finalizing
-            await new Promise(r => setTimeout(r, 1000));
-            statusText.innerText = "Generating AI Questions...";
-            progressBar.style.width = "100%";
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            statusText.innerText = 'Generating AI Questions...';
+            progressBar.style.width = '100%';
             document.getElementById('step-3').classList.add('text-blue-600', 'font-semibold');
 
-            // Show Results with Real Data
-            setTimeout(() => {
-                showResults(realData);
-            }, 500);
-
+            setTimeout(() => showResults(realData), 500);
         } catch (err) {
-            statusText.innerText = "Error: " + err.message;
+            statusText.innerText = 'Error: ' + err.message;
             statusText.classList.add('text-red-600');
         }
     }
 
     function showResults(data) {
-        document.getElementById('progress-area').classList.add('hidden');
-        const resultArea = document.getElementById('analysis-result');
+        // This MUST be inside this function: here `data` is the API response.
+        analysisData = data;
 
+        document.getElementById('progress-area').classList.add('hidden');
         document.getElementById('company-name').innerText = data.name;
         document.getElementById('company-description').innerText = data.description;
-
         document.getElementById('q1-label').innerText = `1. ${data.questions.ai}`;
         document.getElementById('q2-label').innerText = `2. ${data.questions.human}`;
+        document.getElementById('analysis-result').classList.remove('hidden');
+    }
 
-        resultArea.classList.remove('hidden');
+    function openDashboard() {
+        if (!analysisData) {
+            alert('Please wait for the analysis to finish before opening the dashboard.');
+            return;
+        }
+        sessionStorage.setItem('aiDashboardData', JSON.stringify(analysisData));
+        window.location.href = 'dashboard.html';
     }
 </script>
 </body>

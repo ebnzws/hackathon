@@ -1,0 +1,57 @@
+<!-- Add this to the existing <style> block. It only styles the final result. -->
+<style>
+    .dashboard-result { background:#fff; color:#09182e; overflow:hidden; border:1px solid #dbe3eb; border-radius:18px; }
+    .dashboard-result .dash-head { background:#071426; color:#fff; padding:26px 40px; }
+    .dashboard-result .dash-kicker { margin:0 0 8px; color:#63dbd2; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .dashboard-result .dash-head h2 { margin:0; font-size:clamp(30px,5vw,48px); letter-spacing:-.04em; }
+    .dashboard-result .dash-summary { display:grid; grid-template-columns:repeat(3,1fr); }
+    .dashboard-result .dash-summary > div { padding:26px 30px; border-right:1px solid #dbe3eb; min-height:145px; }
+    .dashboard-result .dash-summary > div:nth-child(1){background:#fff4ef}.dashboard-result .dash-summary > div:nth-child(2){background:#effafa}.dashboard-result .dash-summary > div:nth-child(3){background:#f5f0ff;border:0}
+    .dashboard-result .dash-label { color:#d90068; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin:0 0 16px; }.dashboard-result .dash-summary > div:nth-child(2) .dash-label{color:#078b8e}.dashboard-result .dash-summary > div:nth-child(3) .dash-label{color:#14598b}
+    .dashboard-result .dash-summary h3 { font-size:27px; line-height:1.08; letter-spacing:-.035em; margin:0; }
+    .dashboard-result .dash-main { display:grid; grid-template-columns:.9fr 1.7fr; gap:34px; padding:42px 34px; }.dashboard-result .dash-hypothesis { border-left:8px solid #d90068; padding-left:20px; }.dashboard-result .dash-hypothesis h3 { font-size:28px; line-height:1.1; margin:0 0 17px; letter-spacing:-.035em; }.dashboard-result .dash-hypothesis p,.dashboard-result .dash-roles p{color:#617086;line-height:1.38;margin:0}
+    .dashboard-result .dash-roles { background:#edf8f8; padding:26px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }.dashboard-result .dash-roles span{font-size:12px;font-weight:800;color:#008f93;text-transform:uppercase}.dashboard-result .dash-roles article:nth-child(2) span{color:#14598b}.dashboard-result .dash-roles article:nth-child(3) span{color:#d90068}.dashboard-result .dash-roles h4{font-size:21px;line-height:1.08;margin:17px 0}
+    .dashboard-result .dash-next { background:#071426;color:#fff;padding:25px 34px;display:grid;grid-template-columns:1fr 1.15fr;gap:25px;align-items:end}.dashboard-result .dash-next h3{font-size:27px;letter-spacing:-.035em;margin:0}.dashboard-result .dash-next p{color:#c0cada;margin:0;line-height:1.35}
+    @media(max-width:700px){.dashboard-result .dash-summary,.dashboard-result .dash-main,.dashboard-result .dash-roles,.dashboard-result .dash-next{grid-template-columns:1fr}.dashboard-result .dash-summary>div{border-right:0;border-bottom:1px solid #dbe3eb}}
+</style>
+
+<!-- Replace only the current <div id="analysis-result">...</div> with this. -->
+<div id="analysis-result" class="hidden fade-in dashboard-result">
+    <header class="dash-head"><p class="dash-kicker">AI transformation / intervention design</p><h2 id="company-name">Human–AI value roles</h2></header>
+    <section class="dash-summary">
+        <div><p class="dash-label">Strategic goal</p><h3 id="strategic-goal">Customer retention</h3></div>
+        <div><p class="dash-label">Leverage point</p><h3 id="leverage-point">Trusted knowledge access</h3></div>
+        <div><p class="dash-label">Recommended intervention</p><h3 id="recommended-intervention">Human–AI collaboration</h3></div>
+    </section>
+    <section class="dash-main">
+        <aside class="dash-hypothesis"><p class="dash-label">Hypothesis</p><h3 id="hypothesis-title">Reliable knowledge enables better decisions</h3><p id="company-description"></p></aside>
+        <div class="dash-roles">
+            <article><span>AI</span><h4 id="ai-role">Find and compare</h4><p id="ai-detail">Retrieve sources, expose conflicts, and flag knowledge gaps.</p></article>
+            <article><span>Human</span><h4 id="human-role">Interpret and approve</h4><p id="human-detail">Assess applicability, decide the response, and remain accountable.</p></article>
+            <article><span>Organization</span><h4 id="organization-role">Maintain and govern</h4><p id="organization-detail">Own sources, review gaps, and govern escalation.</p></article>
+        </div>
+    </section>
+    <footer class="dash-next"><div><p class="dash-kicker">Next decision</p><h3 id="next-decision">Validate before scaling</h3></div><p id="success-measure">Success: improved decision quality and speed, with no loss of safety or human agency.</p></footer>
+</div>
+
+<!-- Replace only the existing showResults() function with this. Backend response remains unchanged. -->
+<script>
+    function showResults(data) {
+        document.getElementById('progress-area').classList.add('hidden');
+        const dashboard = data.dashboard || {};
+        const roles = dashboard.roles || {};
+        const put = (id, value) => { if (value) document.getElementById(id).innerText = value; };
+        put('company-name', data.name);
+        put('company-description', dashboard.hypothesis?.body || data.description);
+        put('strategic-goal', dashboard.goal);
+        put('leverage-point', dashboard.leverage);
+        put('recommended-intervention', dashboard.intervention);
+        put('hypothesis-title', dashboard.hypothesis?.title);
+        put('ai-role', roles.ai?.title); put('ai-detail', roles.ai?.detail);
+        put('human-role', roles.human?.title); put('human-detail', roles.human?.detail);
+        put('organization-role', roles.organization?.title); put('organization-detail', roles.organization?.detail);
+        put('next-decision', dashboard.nextDecision?.title);
+        put('success-measure', dashboard.nextDecision?.success);
+        document.getElementById('analysis-result').classList.remove('hidden');
+    }
+</script>
