@@ -68,7 +68,7 @@ This project is a single-page analysis tool that reads company information from 
 
 1. **AI Agent: Analyze the Company**
 
-   * Read and analyze the available company information.
+   * Read and analyse the available company information with a given Analysation framwework.
    * Understand the company’s business model, products/services, departments, workflows, challenges, and current capabilities.
    * Identify potential opportunities where AI and human expertise can create value.
 
