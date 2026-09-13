@@ -17,7 +17,7 @@
     <!-- Header -->
     <header class="mb-10 text-center">
         <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight">AI Strategy Consultant Agent</h1>
-        <p class="text-slate-500 mt-2 text-sm uppercase tracking-widest font-medium">Repository Folder: /Company/elds</p>
+        <p class="text-slate-500 mt-2 text-sm uppercase tracking-widest font-medium">Repository Folder: /Company/..</p>
     </header>
 
     <!-- Initial Start Button Area -->
@@ -49,7 +49,7 @@
             <!-- Steps will be highlighted here via JS -->
             <div id="step-1" class="flex items-center text-slate-400 transition-colors duration-500">
                 <div class="w-6 h-6 rounded-full border-2 border-current flex items-center justify-center mr-3 text-xs font-bold">1</div>
-                <span>Reading Markdown files from <code>Company/elds/</code></span>
+                <span>Reading Markdown files from <code>Company/../</code></span>
             </div>
             <div id="step-2" class="flex items-center text-slate-400 transition-colors duration-500">
                 <div class="w-6 h-6 rounded-full border-2 border-current flex items-center justify-center mr-3 text-xs font-bold">2</div>
@@ -114,7 +114,7 @@
         try {
             // --- REAL API CALL ---
             // Step 1: Trigger Backend Read
-            statusText.innerText = "Accessing /Company/elds folder...";
+            statusText.innerText = "Accessing /Company/ folder...";
             progressBar.style.width = "33%";
 
             const response = await fetch('http://localhost:3000/api/analyze');

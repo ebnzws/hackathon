@@ -15,8 +15,8 @@ const voice = new ElevenLabs({
     apiKey: process.env.ELEVENLABS_API_KEY
 });
 
-// UPDATED PATH: Goes up two levels from /backend/ and then into /Company/EldsMockData
-const companyFolder = path.resolve(__dirname, '..', '..', 'Company', 'EldsMockData');
+// UPDATED PATH: Goes up two levels from /backend/ and then into /Company
+const companyFolder = path.resolve(__dirname, '..', '..', 'Company', 'PrototypeData');
 
 app.get('/api/analyze', async (req, res) => {
     console.log("Searching for MD files in:", companyFolder);
