@@ -1,0 +1,28 @@
+# Asteron_Agent_Feedback
+
+Source file: Asteron_Agent_Feedback.csv
+
+## CSV data
+
+| synthetic | feedback_id | employee_id | role | region | date | ticket_id | comment |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| true | AF-01 | EMP-001 | frontline_agent | Europe | 2026-02-10 | AST-0004 | The normal retry check is quick. This tenant needed a second opinion before I felt comfortable. |
+| true | AF-02 | EMP-002 | frontline_agent | Europe | 2026-03-12 |  | Writing a clean summary at the end of every shift takes time. I would welcome help with that. |
+| true | AF-03 | EMP-003 | technical_specialist | Europe | 2026-05-20 | AST-0024 | The May query regression needed engineering. Better triage would not have fixed the code. |
+| true | AF-04 | EMP-004 | team_lead | North America | 2026-08-20 | AST-0041 | We had fewer overlapping hours with Europe this summer. Several cases waited for the next shift. |
+| true | AF-05 | EMP-005 | frontline_agent | Europe | 2026-04-15 | AST-0017 | Locale comes from billing too often. I could send these cases to the right queue if that field were correct. |
+| true | AF-06 | EMP-006 | knowledge_manager | Europe | 2026-06-04 |  | Product owners review material around releases. Migration follow-ups do not always have a booked review slot. |
+| true | AF-07 | EMP-007 | frontline_agent | North America | 2026-08-21 | AST-0043 | The inherited flag is familiar to our long-tenured agent. I ask them when the tenant history is unclear. |
+| true | AF-08 | EMP-008 | technical_specialist | Europe | 2026-07-15 | AST-0033 | My replay checklist is in the product operations space. I link it when someone asks. |
+| true | AF-09 | EMP-009 | frontline_agent | Europe | 2026-08-05 |  | The headset replacement queue is slow and the office is noisy. |
+| true | AF-10 | EMP-010 | team_lead | Europe | 2026-06-12 |  | Throughput is discussed weekly. Coaching and article review are harder to protect when the queue is red. |
+| true | AF-11 | EMP-011 | frontline_agent | Europe | 2026-05-27 | AST-0026 | Waiting for the customer security administrator was the main delay on this one. |
+| true | AF-12 | EMP-012 | knowledge_manager | Europe | 2026-07-21 |  | Password and invoice pages have stable owners and low review effort. Usage there is healthy. |
+| true | AF-13 | EMP-013 | technical_specialist | Europe | 2026-08-14 | AST-0046 | I prefer to check the tenant before advising a replay. Escalation is appropriate when the action may change data. |
+| true | AF-14 | EMP-014 | frontline_agent | North America | 2026-08-18 |  | Our onboarding cohort could use more sandbox practice. The practice tenants are booked out. |
+| true | AF-15 | EMP-015 | frontline_agent | Europe | 2026-06-24 | AST-0030 | I found the page, but I was not sure whether it covered the inherited rule or only a new tenant. |
+| true | AF-16 | EMP-016 | team_lead | Europe | 2026-07-23 | AST-0038 | We need the release defect trend alongside support metrics before deciding where to invest. |
+| true | AF-17 | EMP-017 | frontline_agent | Europe | 2026-07-29 |  | The summary pilot saved me a little writing time; I still checked the final note carefully. |
+| true | AF-18 | EMP-018 | technical_specialist | Europe | 2026-08-18 | AST-0049 | The joint call helped both teams agree on event timing. I wish the earlier investigation had captured the version. |
+| true | AF-19 | EMP-019 | frontline_agent | North America | 2026-08-25 |  | A better shift calendar would help. I sometimes do not know who is actually available. |
+| true | AF-20 | EMP-020 | knowledge_manager | Europe | 2026-08-26 |  | I can publish changes in DocNest but cannot edit the acquired product operations space. Its owner has a separate schedule. |
